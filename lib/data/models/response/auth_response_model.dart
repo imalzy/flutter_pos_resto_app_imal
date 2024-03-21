@@ -3,7 +3,7 @@ import 'dart:convert';
 class AuthResponseModel {
   final String? message;
   final String? accessToken;
-  final Data? data;
+  final User? data;
 
   AuthResponseModel({
     this.message,
@@ -20,7 +20,7 @@ class AuthResponseModel {
       AuthResponseModel(
         message: json["message"],
         accessToken: json["access_token"],
-        data: json["data"] == null ? null : Data.fromMap(json["data"]),
+        data: json["data"] == null ? null : User.fromMap(json["data"]),
       );
 
   Map<String, dynamic> toMap() => {
@@ -30,7 +30,7 @@ class AuthResponseModel {
       };
 }
 
-class Data {
+class User {
   final int? id;
   final String? name;
   final String? email;
@@ -42,7 +42,7 @@ class Data {
   final dynamic twoFactorRecoveryCodes;
   final dynamic twoFactorConfirmedAt;
 
-  Data({
+  User({
     this.id,
     this.name,
     this.email,
@@ -55,11 +55,11 @@ class Data {
     this.twoFactorConfirmedAt,
   });
 
-  factory Data.fromJson(String str) => Data.fromMap(json.decode(str));
+  factory User.fromJson(String str) => User.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Data.fromMap(Map<String, dynamic> json) => Data(
+  factory User.fromMap(Map<String, dynamic> json) => User(
         id: json["id"],
         name: json["name"],
         email: json["email"],
